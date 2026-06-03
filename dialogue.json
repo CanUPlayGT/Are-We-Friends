@@ -1,0 +1,28 @@
+{
+"Dialogue1" : [
+	{
+		"name": "Momoi",
+		"text": "Saya mau beli makanan ini"
+	},
+	{
+		"name": "Hoshino",
+		"text": "Apakah mau dipanaskan?"
+	},
+		{
+		"name": "Momoi",
+		"text": "Iya, tolong dipanaskan."
+	},
+	{
+		"name": "Hoshino",
+		"text": "Mohon ditunggu sebentar. Apakah anda butuh sumpit?"
+	},
+		{
+		"name": "Momoi",
+		"text": "Iya, saya mau sumpitnya. Tapi, saya tidak butuh kantong belanjanya."
+	},
+		{
+		"name": "Hoshino",
+		"text": "Baik. Semuanya 500 yen."
+	}
+]
+}
