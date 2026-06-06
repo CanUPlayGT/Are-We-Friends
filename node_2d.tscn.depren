@@ -11,7 +11,6 @@
 [node name="DialogueUI" type="Control" parent="." unique_id=104124960]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("3_epypp")
 
 [node name="DialogueManager" type="Node" parent="DialogueUI" unique_id=339002623]
 script = ExtResource("4_0hol4")
@@ -53,6 +52,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="DialoguePanel" type="Panel" parent="DialogueUI/MarginContainer" unique_id=1907254029]
 layout_mode = 2
+script = ExtResource("3_epypp")
 metadata/_edit_group_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="DialogueUI/MarginContainer/DialoguePanel" unique_id=619278839]
@@ -86,5 +86,5 @@ layout_mode = 2
 theme_override_font_sizes/normal_font_size = 18
 text = "Some dialogue here"
 
-[connection signal="next_dialogue" from="DialogueUI" to="DialogueUI/DialogueManager" method="_on_dialogue_ui_next_dialogue"]
-[connection signal="update_dialogue" from="DialogueUI/DialogueManager" to="DialogueUI" method="_on_dialogue_manager_update_dialogue"]
+[connection signal="update_dialogue" from="DialogueUI/DialogueManager" to="DialogueUI/MarginContainer/DialoguePanel" method="_on_dialogue_manager_update_dialogue"]
+[connection signal="next_dialogue" from="DialogueUI/MarginContainer/DialoguePanel" to="DialogueUI/DialogueManager" method="_on_dialogue_panel_next_dialogue"]

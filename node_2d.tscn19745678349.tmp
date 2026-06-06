@@ -3,18 +3,18 @@
 [ext_resource type="Texture2D" uid="uid://bv68uwbq8ugfb" path="res://pikanime_id_20240507_p_3362558606544652901_1_3362558606544652901.png" id="1_0e48y"]
 [ext_resource type="Texture2D" uid="uid://ucfqty3mpljh" path="res://109413834_p0_master1200.png" id="2_epypp"]
 [ext_resource type="Script" uid="uid://c1wr6h8bcrvlv" path="res://char.gd" id="2_q6r6c"]
-[ext_resource type="Script" uid="uid://dwctk263kgvn1" path="res://DialogueUI.gd" id="3_epypp"]
+[ext_resource type="Script" uid="uid://dwctk263kgvn1" path="res://DialoguePanel.gd" id="3_epypp"]
 [ext_resource type="Script" uid="uid://dcowdv3nig0hs" path="res://dialogue_manager.gd" id="4_0hol4"]
 
 [node name="DialogueSystem" type="Node2D" unique_id=704152339]
+
+[node name="DialogueManager" type="Node" parent="." unique_id=339002623]
+script = ExtResource("4_0hol4")
 
 [node name="DialogueUI" type="Control" parent="." unique_id=104124960]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("3_epypp")
-
-[node name="DialogueManager" type="Node" parent="DialogueUI" unique_id=339002623]
-script = ExtResource("4_0hol4")
 
 [node name="Char" type="Control" parent="DialogueUI" unique_id=1526202519]
 anchors_preset = 0
@@ -53,6 +53,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="DialoguePanel" type="Panel" parent="DialogueUI/MarginContainer" unique_id=1907254029]
 layout_mode = 2
+script = ExtResource("3_epypp")
 metadata/_edit_group_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="DialogueUI/MarginContainer/DialoguePanel" unique_id=619278839]
@@ -86,5 +87,5 @@ layout_mode = 2
 theme_override_font_sizes/normal_font_size = 18
 text = "Some dialogue here"
 
-[connection signal="next_dialogue" from="DialogueUI" to="DialogueUI/DialogueManager" method="_on_dialogue_ui_next_dialogue"]
-[connection signal="update_dialogue" from="DialogueUI/DialogueManager" to="DialogueUI" method="_on_dialogue_manager_update_dialogue"]
+[connection signal="update_dialogue" from="DialogueManager" to="DialogueUI/MarginContainer/DialoguePanel" method="_on_dialogue_manager_update_dialogue"]
+[connection signal="next_dialogue" from="DialogueUI/MarginContainer/DialoguePanel" to="DialogueManager" method="_on_dialogue_panel_next_dialogue"]

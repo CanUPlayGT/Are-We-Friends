@@ -1,5 +1,4 @@
-{
-"Dialogue1" : [
+[
 	{
 		"name": "Momoi",
 		"text": "Saya mau beli makanan ini"
@@ -25,4 +24,3 @@
 		"text": "Baik. Semuanya 500 yen."
 	}
 ]
-}
