@@ -21,12 +21,12 @@ signal next_dialogue()
 	
 
 
-func _on_dialogue_manager_update_dialogue(name: String, text: String) -> void:
-	update_texts(name, text)
-	if name == "frame1":
+func _on_dialogue_manager_update_dialogue(line : Dictionary) -> void:
+	update_texts(line.name, line.text)
+	if line.frame == "1":
 		$Art/Frame1.modulate = Color.from_rgba8(255, 255, 255, 255)
 		$Art/Frame2.modulate = Color.from_rgba8(255, 255, 255, 150)
-	elif name == "frame2":
+	elif line.frame == "2":
 		$Art/Frame1.modulate = Color.from_rgba8(255, 255, 255, 150)
 		$Art/Frame2.modulate = Color.from_rgba8(255, 255, 255, 255)
 	

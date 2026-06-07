@@ -61,16 +61,17 @@ func load_dialogue_csv() :
 		
 	return result
 		
-signal update_dialogue(name : String, text : String)
+signal update_dialogue(line : Dictionary)
 	
 func _on_dialogue_ui_next_dialogue() -> void:
 	if not dialogue:
 		printerr("dialogue is null")
 		return
 
-	if current_id > dialogue.size():
+	if not current_id < dialogue.size():
 		return
-	update_dialogue.emit(dialogue[current_id].name, dialogue[current_id].text)
+
+	update_dialogue.emit(dialogue[current_id])
 	current_id += 1
 	
 	
