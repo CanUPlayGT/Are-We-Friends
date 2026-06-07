@@ -36,7 +36,7 @@ offset_left = 911.0
 offset_top = 125.0
 offset_right = 1211.0
 offset_bottom = 514.0
-texture = ExtResource("2_epypp")
+texture = ExtResource("1_0e48y")
 expand_mode = 1
 
 [node name="Frame2" type="TextureRect" parent="DialogueUI/Art" unique_id=1165127653]
@@ -45,7 +45,7 @@ offset_left = 95.0
 offset_top = 119.0
 offset_right = 383.0
 offset_bottom = 509.0
-texture = ExtResource("1_0e48y")
+texture = ExtResource("2_epypp")
 expand_mode = 1
 
 [node name="DialoguePanel" type="MarginContainer" parent="DialogueUI" unique_id=2138561695]

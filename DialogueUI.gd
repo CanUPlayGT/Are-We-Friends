@@ -1,5 +1,7 @@
 extends Control
 
+@export var label : Label
+@export var richtextlabel : RichTextLabel
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -11,10 +13,8 @@ func _process(delta: float) -> void:
 		next_dialogue.emit()
 	
 func update_texts(name, text):
-	$MarginContainer/DialoguePanel/MarginContainer/Label.text = name
-	$MarginContainer/DialoguePanel/MarginContainer/MarginContainer/RichTextLabel.text = text
-
-
+	label.text = name
+	richtextlabel.text = text
 
 signal next_dialogue()
 
@@ -23,10 +23,10 @@ signal next_dialogue()
 
 func _on_dialogue_manager_update_dialogue(name: String, text: String) -> void:
 	update_texts(name, text)
-	if name == "Hoshino":
-		$Char/Hoshino.modulate = Color.from_rgba8(255, 255, 255, 255)
-		$Char/Momoi.modulate = Color.from_rgba8(255, 255, 255, 150)
-	elif name == "Momoi":
-		$Char/Hoshino.modulate = Color.from_rgba8(255, 255, 255, 150)
-		$Char/Momoi.modulate = Color.from_rgba8(255, 255, 255, 255)
+	if name == "frame1":
+		$Art/Frame1.modulate = Color.from_rgba8(255, 255, 255, 255)
+		$Art/Frame2.modulate = Color.from_rgba8(255, 255, 255, 150)
+	elif name == "frame2":
+		$Art/Frame1.modulate = Color.from_rgba8(255, 255, 255, 150)
+		$Art/Frame2.modulate = Color.from_rgba8(255, 255, 255, 255)
 	
