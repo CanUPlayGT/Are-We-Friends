@@ -1,26 +1,26 @@
 [
-	{
-		"name": "Momoi",
-		"text": "Saya mau beli makanan ini",
-	},
-	{
-		"name": "Hoshino",
-		"text": "Apakah mau dipanaskan?"
-	},
-		{
-		"name": "Momoi",
-		"text": "Iya, tolong dipanaskan."
-	},
-	{
-		"name": "Hoshino",
-		"text": "Mohon ditunggu sebentar. Apakah anda butuh sumpit?"
-	},
-		{
-		"name": "Momoi",
-		"text": "Iya, saya mau sumpitnya. Tapi, saya tidak butuh kantong belanjanya."
-	},
-		{
-		"name": "Hoshino",
-		"text": "Baik. Semuanya 500 yen."
-	}
+	[
+		"Momoi",
+		"Saya mau beli makanan ini"
+	],
+	[
+		"Hoshino",
+		"Apakah mau dipanaskan?"
+	],
+	[
+		"Momoi",
+		"Iya, tolong dipanaskan."
+	],
+	[
+		"Hoshino",
+		"Mohon ditunggu sebentar. Apakah anda butuh sumpit?"
+	],
+	[
+		"Momoi",
+		"Iya, saya mau sumpitnya. Tapi, saya tidak butuh kantong belanjanya."
+	],
+	[
+		"Hoshino",
+		"Baik. Semuanya 500 yen."
+	]
 ]

@@ -1,98 +1,17 @@
 [gd_scene format=3 uid="uid://dnr8moividttj"]
 
-[ext_resource type="Texture2D" uid="uid://bv68uwbq8ugfb" path="res://pikanime_id_20240507_p_3362558606544652901_1_3362558606544652901.png" id="1_0e48y"]
-[ext_resource type="Texture2D" uid="uid://ucfqty3mpljh" path="res://109413834_p0_master1200.png" id="2_epypp"]
-[ext_resource type="Script" uid="uid://dwctk263kgvn1" path="res://DialogueUI.gd" id="3_epypp"]
+[ext_resource type="PackedScene" uid="uid://cootxxfs55b5e" path="res://dialogue_ui.tscn" id="2_0e48y"]
 [ext_resource type="Script" uid="uid://dcowdv3nig0hs" path="res://dialogue_manager.gd" id="4_0hol4"]
-[ext_resource type="Texture2D" uid="uid://rw505e82f68f" path="res://background.jpg" id="5_q6r6c"]
 
 [node name="DialogueSystem" type="Node2D" unique_id=704152339]
 
 [node name="DialogueManager" type="Node" parent="." unique_id=339002623]
 script = ExtResource("4_0hol4")
+current_id = 14
 
-[node name="DialogueUI" type="Control" parent="." unique_id=104124960 node_paths=PackedStringArray("label", "richtextlabel")]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("3_epypp")
-label = NodePath("DialoguePanel/Panel/MarginContainer/Label")
-richtextlabel = NodePath("DialoguePanel/Panel/MarginContainer/MarginContainer/RichTextLabel")
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=729604605]
 
-[node name="Art" type="Control" parent="DialogueUI" unique_id=1526202519]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="DialogueUI" parent="CanvasLayer" unique_id=793626854 instance=ExtResource("2_0e48y")]
 
-[node name="Background" type="TextureRect" parent="DialogueUI/Art" unique_id=1228403685]
-modulate = Color(0.9, 0.9, 0.9, 1)
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 720.0
-texture = ExtResource("5_q6r6c")
-
-[node name="Frame1" type="TextureRect" parent="DialogueUI/Art" unique_id=1165127653]
-layout_mode = 0
-offset_left = 95.0
-offset_top = 119.0
-offset_right = 383.0
-offset_bottom = 509.0
-texture = ExtResource("1_0e48y")
-expand_mode = 1
-
-[node name="Frame2" type="TextureRect" parent="DialogueUI/Art" unique_id=382437138]
-layout_mode = 0
-offset_left = 911.0
-offset_top = 125.0
-offset_right = 1211.0
-offset_bottom = 514.0
-texture = ExtResource("2_epypp")
-expand_mode = 1
-
-[node name="DialoguePanel" type="MarginContainer" parent="DialogueUI" unique_id=2138561695]
-layout_mode = 1
-offset_left = 2.0
-offset_top = 450.0
-offset_right = 1280.0
-offset_bottom = 718.0
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="Panel" type="Panel" parent="DialogueUI/DialoguePanel" unique_id=1907254029]
-layout_mode = 2
-metadata/_edit_group_ = true
-
-[node name="MarginContainer" type="MarginContainer" parent="DialogueUI/DialoguePanel/Panel" unique_id=619278839]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="Label" type="Label" parent="DialogueUI/DialoguePanel/Panel/MarginContainer" unique_id=1552651529]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 28
-text = "Name"
-
-[node name="MarginContainer" type="MarginContainer" parent="DialogueUI/DialoguePanel/Panel/MarginContainer" unique_id=899353351]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="RichTextLabel" type="RichTextLabel" parent="DialogueUI/DialoguePanel/Panel/MarginContainer/MarginContainer" unique_id=2140961284]
-layout_mode = 2
-theme_override_font_sizes/normal_font_size = 18
-text = "Some dialogue here"
-
-[connection signal="update_dialogue" from="DialogueManager" to="DialogueUI" method="_on_dialogue_manager_update_dialogue"]
-[connection signal="next_dialogue" from="DialogueUI" to="DialogueManager" method="_on_dialogue_ui_next_dialogue"]
+[connection signal="update_dialogue" from="DialogueManager" to="CanvasLayer/DialogueUI" method="_on_dialogue_manager_update_dialogue"]
+[connection signal="next_dialogue" from="CanvasLayer/DialogueUI" to="DialogueManager" method="_on_dialogue_ui_next_dialogue"]

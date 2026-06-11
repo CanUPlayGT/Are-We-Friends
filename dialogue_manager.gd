@@ -1,18 +1,12 @@
 extends Node
 
 var dialogue
-var current_id = 0
-# Called when the node enters the scene tree for the first time.
+@export var current_id = 0
+
 func _ready() -> void:
 	dialogue = load_dialogue_csv()
-	_on_dialogue_ui_next_dialogue()
+	_on_dialogue_ui_next_dialogue(-1)
 	
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-	
-#returns an array of dictionaries
 func load_dialogue() :
 	var json = JSON.new()
 	var content
@@ -22,7 +16,6 @@ func load_dialogue() :
 			content = json.data 
 	return content
 
-#returns an array of dictionaries
 func load_dialogue_csv() :
 	var file_path = "res://dialogue.csv"
 	if not FileAccess.file_exists(file_path):
@@ -46,32 +39,26 @@ func load_dialogue_csv() :
 		content.append(temp) 
 		
 	#print(content)
-	
-	#converts an array of arrays into array of dictionaries
-	var result = []
-	var line = {}
-	for i in content.size():
-		line = {
-			"id" : content[i][0],
-			"name" : content[i][1],
-			"text": content[i][2],
-			"frame": content[i][3]
-		}
-		result.append(line)
 		
-	return result
+	return content
 		
-signal update_dialogue(line : Dictionary)
+signal update_dialogue(line : Array)
 	
-func _on_dialogue_ui_next_dialogue() -> void:
+func _on_dialogue_ui_next_dialogue(jump_to : int = 0) -> void:
 	if not dialogue:
 		printerr("dialogue is null")
 		return
 
 	if not current_id < dialogue.size():
 		return
-
+	
+	if jump_to > -1:
+		current_id = jump_to
+		
 	update_dialogue.emit(dialogue[current_id])
 	current_id += 1
+
+	
+
 	
 	
