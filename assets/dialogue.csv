@@ -1,0 +1,32 @@
+ID,NAME,LINE,FRAME,HAS_OPTIONS,OPTION 1,JUMPTO1 ,OPTION 2,JUMPTO2,OPTION 3,JUMPTO3,OPTION 4,JUMPTO4,END_OF_LINE
+0,Player,(She really does have horns. This is the first time I've seen a dragon before.),1,,,,,,,,,,
+1,Player,(But she's so young. Hard to believe she's on death row.),1,,,,,,,,,,
+2,.,May I ask who...?,2,,,,,,,,,,
+3,Player,I'm the guard here. I'll be monitoring you starting today,1,,,,,,,,,,
+4,.,......,2,,,,,,,,,,
+5,Player,"Mira, was it?",1,,,,,,,,,,
+6,Player,Let me cut straight through the chase... Is it true you burned down a village?,1,,,,,,,,,,
+7,Mira,....,2,,,,,,,,,,
+8,Player,Remaining silent will only ensure that your death sentence stands.,1,,,,,,,,,,
+9,Mira,I'm a descendant of demons. Me burning down that village and ending up like was only to be expected.,2,,,,,,,,,,
+10,Player,Descendant of demons? What does that even mean? I heard the other guards saying the same thing.,1,,,,,,,,,,
+11,Mira,These horns posses supernatural powers. Powers that bring misfortune to all.,2,,,,,,,,,,
+12,Mira,"That is why.
+I must die.",2,,,,,,,,,,
+13,Mira,I heard that pressing that button will kill me. ..,2,,,,,,,,,,
+14,Mira,"Why not go ahead?
+After all, I.
+I must die.",2,,,,,,,,,,
+15,Player,"(She's acting dark.
+and reckless too.)",1,TRUE,Is that so?,16,Is that what you really want?,23,,,,,
+16,Player,Is that so?,1,,,,,,,,,,
+17,Mira,That's what I said. And misfortune is bound to come upon you too.,2,,,,,,,,,,
+18,Mira,......,2,,,,,,,,,,
+19,Mira,"So you, too, fear me.",2,,,,,,,,,,
+20,Mira,Is it because I am a demon descendant? Or you have a grudge against dragons.?,2,,,,,,,,,,
+21,Mira,Or perhaps. you simply wanted to see what would happen if you pressed the button.?,2,,,,,,,,,,
+22,Mira,*collapses,2,,,,,,,,,,TRUE
+23,Player,Is that what you really want?,1,,,,,,,,,,
+24,Mira,Not really.,2,,,,,,,,,,
+25,Mira,"Help me get out of here. Please I beg you, o' my hero.",2,,,,,,,,,,
+26,Player,"Nah, let your a** stuck inside here. You criminal b*tch",1,,,,,,,,,,TRUE
