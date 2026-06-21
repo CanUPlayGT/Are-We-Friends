@@ -4,13 +4,13 @@ extends Control
 @export var richtextlabel : RichTextLabel
 @export var character1 : Texture2D
 @export var character2 : Texture2D
+
 #Map table header to array index 
 enum header{
 	id,
-	name,
+	speaker,
 	line,
 	frame,
-	has_options,
 	option1,
 	jumpto1,
 	option2,
@@ -21,7 +21,8 @@ enum header{
 	jumpto4,
 	end_of_line
 }
-var total_column = 13
+
+var total_column = header.size()
 var array = []
 var buttons : Array = []
 var choicebox_is_opened = false
@@ -51,7 +52,7 @@ func update_texts(speaker, text):
 signal next_dialogue(jump_to : int)
 
 func _on_dialogue_manager_update_dialogue(line : Array) -> void:
-	update_texts(line[header.name], line[header.line])
+	update_texts(line[header.speaker], line[header.line])
 	$Typewriter.start(richtextlabel)
 	
 	if line[header.frame] != previous_value:
@@ -62,13 +63,8 @@ func _on_dialogue_manager_update_dialogue(line : Array) -> void:
 				$Art/Frame.update_picture(character2)
 		$Art/Frame.slide()
 	previous_value = line[header.frame]
-	#if line[header.frame] == "1":
-		#$Art/Frame1.modulate = Color.from_rgba8(255, 255, 255, 255)
-		#$Art/Frame2.modulate = Color.from_rgba8(255, 255, 255, 150)
-	#elif line[header.frame]== "2":
-		#$Art/Frame1.modulate = Color.from_rgba8(255, 255, 255, 150)
-		#$Art/Frame2.modulate = Color.from_rgba8(255, 255, 255, 255)
 	array = line
+	
 func advance() -> void:
 	if $Typewriter.is_typing:
 		$Typewriter.stop()
@@ -84,7 +80,7 @@ func advance() -> void:
 		return
 
 	#Self-explainable
-	if array[header.has_options] != "":
+	if array[header.option1] != "":
 		open_choicebox()
 	else:
 		#send signal to DialogueManager
@@ -105,6 +101,8 @@ func open_choicebox():
 				$Options/VBoxContainer.add_child(buttons.back(), true)
 func on_button_pressed(index: int):
 	choicebox_is_opened = false
+	#JUMPTOx column must be next to the OPTIONx column
+	#hence index + 1 
 	var next_id = int(array[index + 1])
 	next_dialogue.emit(next_id)
 	buttons.clear()
