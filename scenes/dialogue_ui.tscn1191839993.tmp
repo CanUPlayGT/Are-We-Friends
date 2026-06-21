@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://cootxxfs55b5e"]
 
 [ext_resource type="Script" uid="uid://dwctk263kgvn1" path="res://scripts/DialogueUI.gd" id="1_i1myr"]
-[ext_resource type="Texture2D" uid="uid://crgloitfemtmu" path="res://assets/unused/background-dark-prison-cell.jpg" id="2_imsod"]
-[ext_resource type="Texture2D" uid="uid://we648l3uimow" path="res://assets/PlaceholderPal1.png" id="3_imsod"]
-[ext_resource type="Texture2D" uid="uid://r7a2382xoo8q" path="res://assets/PlaceholderPal14.png" id="3_wlc0t"]
+[ext_resource type="Texture2D" uid="uid://dumqarwlvkit3" path="res://assets/images.jpg" id="2_i1myr"]
+[ext_resource type="Texture2D" uid="uid://c5ixtd6h8u1ip" path="res://assets/unused/4b42111c-39ab-476c-b08c-7794a014b9cb-removebg-preview.png" id="3_e6usr"]
 [ext_resource type="Script" uid="uid://dq528p78fely8" path="res://scripts/typewriter.gd" id="4_e6usr"]
 [ext_resource type="Script" uid="uid://dpbe2aicco5yj" path="res://scripts/frame.gd" id="4_imsod"]
 
@@ -19,8 +18,6 @@ size_flags_vertical = 3
 script = ExtResource("1_i1myr")
 label = NodePath("DialogueBox/Panel/VBoxContainer/MarginContainer/Label")
 richtextlabel = NodePath("DialogueBox/Panel/VBoxContainer/MarginContainer2/RichTextLabel")
-character1 = ExtResource("3_imsod")
-character2 = ExtResource("3_wlc0t")
 
 [node name="Art" type="Control" parent="." unique_id=1564601631]
 layout_mode = 1
@@ -38,26 +35,25 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_imsod")
+texture = ExtResource("2_i1myr")
 expand_mode = 3
 
 [node name="Frame" type="TextureRect" parent="Art" unique_id=2052114895]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.35859376
-anchor_top = 0.20694445
-anchor_right = 0.95234376
-anchor_bottom = 1.6791667
+anchor_left = 0.31875
+anchor_top = 0.19166666
+anchor_right = 0.678125
+anchor_bottom = 0.83055556
 offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_imsod")
+texture = ExtResource("3_e6usr")
 script = ExtResource("4_imsod")
-duration_ms = 350.0
+duration = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="DialogueBox" type="MarginContainer" parent="." unique_id=46719272]

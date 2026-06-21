@@ -1,13 +1,21 @@
 extends Node
 
-var dialogue
-@export var current_id = 0
+@export_file("*.json", "*.csv") var file_path : String
+var dialogue : Array
+@export var current_id := 0
 
 func _ready() -> void:
-	dialogue = load_dialogue_csv()
+	if file_path == null:
+		print_debug("Error: missing dialogue file")
+	elif file_path.get_extension() == "json":
+		dialogue = load_dialogue_json()
+	elif file_path.get_extension() == "csv":
+		dialogue = load_dialogue_csv()
+	else:
+		print_debug("Error: Wrong dialogue file format")
 	_on_dialogue_ui_next_dialogue(-1)
 	
-func load_dialogue() :
+func load_dialogue_json() :
 	var json = JSON.new()
 	var content
 	var file = FileAccess.open("res://dialogue.json", FileAccess.READ)
@@ -17,11 +25,10 @@ func load_dialogue() :
 	return content
 
 func load_dialogue_csv() :
-	var file_path = "res://dialogue.csv"
 	if not FileAccess.file_exists(file_path):
 		printerr("File not found: %s" % file_path)
 		
-	var file = FileAccess.open("res://dialogue.csv", FileAccess.READ)
+	var file = FileAccess.open(file_path, FileAccess.READ)
 	if file == null:
 		return null
 		
@@ -46,7 +53,7 @@ signal update_dialogue(line : Array)
 	
 func _on_dialogue_ui_next_dialogue(jump_to : int = -1) -> void:
 	if not dialogue:
-		printerr("dialogue is null")
+		print_debug("dialogue is null: %s" % dialogue)
 		return
 
 	if not current_id < dialogue.size():
