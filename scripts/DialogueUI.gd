@@ -11,6 +11,7 @@ enum header{
 	speaker,
 	line,
 	frame,
+	finish,
 	option1,
 	jumpto1,
 	option2,
@@ -19,7 +20,6 @@ enum header{
 	jumpto3,
 	option4,
 	jumpto4,
-	end_of_line
 }
 
 var total_column = header.size()
@@ -76,7 +76,7 @@ func advance() -> void:
 		print("Wrong format")
 		return
 	#check if current line is the last
-	if String(array[header.end_of_line]).to_lower() == "true":
+	if String(array[header.finish]).to_lower() == "true":
 		return
 
 	#Self-explainable
