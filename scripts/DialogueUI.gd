@@ -29,6 +29,8 @@ var choicebox_is_opened = false
 
 var previous_value : String 
 
+@onready var typewriter_player : Typewriter = $Typewriter
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -39,7 +41,13 @@ func _input(event : InputEvent) -> void:
 		
 	if event.is_action_pressed("advance"):
 		if not choicebox_is_opened:
-			advance()
+			if typewriter_player.current_state == typewriter_player.state.paused:
+				typewriter_player.unpause()
+			elif typewriter_player.current_state == typewriter_player.state.playing:
+				typewriter_player.stop()
+			else:
+				advance()
+			return
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,12 +70,13 @@ func _on_dialogue_manager_update_dialogue(line : Array) -> void:
 			"2":
 				$Art/Frame.update_picture(character2)
 		$Art/Frame.slide()
+			
+	
 	previous_value = line[header.frame]
 	array = line
 	
 func advance() -> void:
-	if $Typewriter.is_typing:
-		$Typewriter.stop()
+
 	
 	if array == null :
 		printerr("dialogue_ui: array value is null")

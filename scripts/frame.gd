@@ -9,7 +9,7 @@ var speed : float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(position.x)
+	#print(position.x)
 	
 	#convert duration to seconds
 	var duration = duration_ms/1000
@@ -18,7 +18,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	
-	prints("Position.x :", position.x)
+	#prints("Position.x :", position.x)
 	if is_sliding: 	
 		if position.x < initial_xpos:
 			position.x += speed * delta
@@ -26,7 +26,7 @@ func _process(delta: float) -> void:
 		else:
 			is_sliding = false
 			position.x = initial_xpos
-		
+
 func update_picture(texture2d : Texture2D) -> void:
 	texture = texture2d
 func slide():
