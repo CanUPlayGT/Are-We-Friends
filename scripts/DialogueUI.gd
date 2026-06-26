@@ -76,8 +76,6 @@ func _on_dialogue_manager_update_dialogue(line : Array) -> void:
 	array = line
 	
 func advance() -> void:
-
-	
 	if array == null :
 		printerr("dialogue_ui: array value is null")
 		return
