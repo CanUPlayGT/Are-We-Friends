@@ -1,22 +1,24 @@
 extends Control
 
+var dl: DialogueLine
 
 var buttons : Array = []
 var choicebox_is_opened = false
-
-var previous_value : String 
 
 @onready var typewriter_player : Typewriter = $Typewriter
 @onready var label : Label = $DialogueBox/Panel/VBoxContainer/MarginContainer/Label
 @onready var richtextlabel : RichTextLabel = $DialogueBox/Panel/VBoxContainer/MarginContainer2/RichTextLabel
 @onready var button_container := $CenterContainer/VBoxContainer
-
 signal choice_chosen(jump_to : int)
 
-func _on_dialogue_manager_dialogue_changed(dl: DialogueLine) -> void:
+func _on_dialogue_manager_dialogue_changed(Dialogue_line: DialogueLine) -> void:
+	dl = Dialogue_line
 	label.text = dl.speaker
 	richtextlabel.text = dl.line
+	typewriter_player.start(richtextlabel)
 	
+func show_choice() -> void:
+	choicebox_is_opened = true
 	create_choice(dl.option_1, dl.jump_to_1)
 	create_choice(dl.option_2, dl.jump_to_2)
 	create_choice(dl.option_3, dl.jump_to_3)
@@ -38,3 +40,10 @@ func on_button_pressed(jump_to: int):
 	buttons.clear()
 	for child in button_container.get_children():
 		button_container.remove_child(child)
+
+func text_animation_is_playing() -> bool :
+	return typewriter_player.is_playing()
+
+func stop_text_animation() -> void:
+	typewriter_player.stop()
+	return 

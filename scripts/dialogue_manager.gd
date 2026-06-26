@@ -23,9 +23,8 @@ func advance() -> void:
 		dialogue_line = get_dialogue_line.call(current_id)
 		
 	wait_for_choice = not dialogue_line.option_1.is_empty()
-
 	dialogue_changed.emit(dialogue_line)
-	
+
 	if dialogue_line.finish == true:
 		return
 	current_id += 1

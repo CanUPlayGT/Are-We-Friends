@@ -1,5 +1,6 @@
 extends Node
 class_name Typewriter
+
 #character per second
 @export var cps : float = 8
 @export var period_delay_ms : float = 0.5
@@ -12,6 +13,9 @@ enum state{
 	paused,
 	idle
 }
+
+signal animation_finished()
+
 var current_state : state
 
 var current_character_index : int
@@ -39,6 +43,7 @@ func start(rich_text_label : RichTextLabel) -> void:
 func stop() -> void:
 	label.visible_characters = -1
 	current_state = state.idle
+	animation_finished.emit()
 	
 func pause() -> void:
 	current_state = state.paused

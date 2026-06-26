@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://co2l1qgl0cuj8" path="res://scripts/dialogue_database.gd" id="2_iywne"]
 [ext_resource type="Script" uid="uid://dcowdv3nig0hs" path="res://scripts/dialogue_manager.gd" id="3_p57ef"]
 [ext_resource type="PackedScene" uid="uid://cootxxfs55b5e" path="res://scenes/ui.tscn" id="4_u5sy4"]
+[ext_resource type="Texture2D" uid="uid://crgloitfemtmu" path="res://assets/background-dark-prison-cell.jpg" id="5_iywne"]
 
 [node name="Game" type="Node2D" unique_id=704152339]
 script = ExtResource("1_lbhrr")
@@ -25,6 +26,9 @@ metadata/_edit_use_anchors_ = true
 [node name="Portrait" type="Sprite2D" parent="Environment" unique_id=1470483700]
 
 [node name="Background" type="Sprite2D" parent="Environment" unique_id=66428313]
+position = Vector2(639.99994, 360)
+scale = Vector2(0.51199996, 0.28799996)
+texture = ExtResource("5_iywne")
 
 [connection signal="dialogue_changed" from="DialogueManager" to="CanvasLayer/UI" method="_on_dialogue_manager_dialogue_changed"]
 [connection signal="choice_chosen" from="CanvasLayer/UI" to="DialogueManager" method="on_choice_button_down"]
