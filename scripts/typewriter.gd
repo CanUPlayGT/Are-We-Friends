@@ -23,6 +23,7 @@ var count : float
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	appear_delay = 1/cps
+	current_state = state.idle
 
 func is_playing() -> bool:
 	return true if current_state == state.playing else false

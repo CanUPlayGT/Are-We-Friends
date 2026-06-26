@@ -1,0 +1,86 @@
+extends Node
+
+@export_file("*.json", "*.csv") var file_path : String
+
+var dialogue_table : Array #2D Array
+
+#Map table header to array index 
+enum header{
+	id,
+	speaker,
+	line,
+	frame,
+	finish,
+	option_1,
+	jump_to_1,
+	option_2,
+	jump_to_2,
+	option_3,
+	jump_to_3,
+	option_4,
+	jump_to_4,
+}
+
+var total_column : int = header.size()
+
+func get_dialogue_line(index : int ) -> DialogueLine:
+	#Convert array of data into DialogueLine object
+	var dialogue_line := DialogueLine.new()
+	var row = dialogue_table[index]
+	dialogue_line.id = row[header.id] as int
+	dialogue_line.speaker = row[header.speaker] as String
+	dialogue_line.line = row[header.line] as String
+	dialogue_line.frame = row[header.frame] as int
+	dialogue_line.finish = true if row[header.finish].to_lower() == "true" else false 
+	dialogue_line.option_1 = row[header.option_1] as String
+	dialogue_line.jump_to_1 = row[header.jump_to_1] as int
+	dialogue_line.option_2 = row[header.option_2] as String
+	dialogue_line.jump_to_2 = row[header.jump_to_2] as int
+	dialogue_line.option_3 = row[header.option_3] as String
+	dialogue_line.jump_to_3 = row[header.jump_to_3] as int
+	dialogue_line.option_4 = row[header.option_4] as String
+	dialogue_line.jump_to_4 = row[header.jump_to_4] as int
+	return dialogue_line
+	
+func _ready() -> void:
+	if not FileAccess.file_exists(file_path):
+		printerr("File not found: %s" % file_path)
+		return
+	var file = FileAccess.open(file_path, FileAccess.READ)
+	if FileAccess.get_open_error() != Error.OK:
+		printerr("Error opening dialogue file")
+		return
+	if file_path.get_extension() == "json":
+		dialogue_table = load_dialogue_json(file)
+	elif file_path.get_extension() == "csv":
+		dialogue_table = load_dialogue_csv(file)
+	else:
+		print_debug("Error: Wrong dialogue file format")
+		
+func load_dialogue_json(file : FileAccess) :
+	var json = JSON.new()
+	var content
+
+	if FileAccess.get_open_error() == Error.OK:
+		if Error.OK == json.parse(file.get_as_text()):
+			content = json.data 
+	return content
+
+func load_dialogue_csv(file : FileAccess) :
+	file.get_csv_line() #discard the first line (header)
+	
+	#Read every line
+	var content = []
+	var temp = []
+	while file.get_position() < file.get_length():
+		#check if a line is empty first
+		temp = file.get_csv_line()
+		if temp[0] == "":
+			return;
+			
+		content.append(temp) 
+		
+	#print(content)
+		
+	return content
+		

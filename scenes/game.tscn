@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dnr8moividttj"]
+
+[ext_resource type="Script" uid="uid://u242susj2kll" path="res://scripts/game.gd" id="1_lbhrr"]
+[ext_resource type="Script" uid="uid://co2l1qgl0cuj8" path="res://scripts/dialogue_database.gd" id="2_iywne"]
+[ext_resource type="Script" uid="uid://dcowdv3nig0hs" path="res://scripts/dialogue_manager.gd" id="3_p57ef"]
+[ext_resource type="PackedScene" uid="uid://cootxxfs55b5e" path="res://scenes/ui.tscn" id="4_u5sy4"]
+
+[node name="Game" type="Node2D" unique_id=704152339]
+script = ExtResource("1_lbhrr")
+
+[node name="DialogueDatabase" type="Node" parent="." unique_id=1323725515]
+script = ExtResource("2_iywne")
+file_path = "res://assets/dialogue.csv"
+
+[node name="DialogueManager" type="Node" parent="." unique_id=339002623]
+script = ExtResource("3_p57ef")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=729604605]
+
+[node name="UI" parent="CanvasLayer" unique_id=793626854 instance=ExtResource("4_u5sy4")]
+metadata/_edit_use_anchors_ = true
+
+[node name="Environment" type="Node2D" parent="." unique_id=114633365]
+
+[node name="Portrait" type="Sprite2D" parent="Environment" unique_id=1470483700]
+
+[node name="Background" type="Sprite2D" parent="Environment" unique_id=66428313]
+
+[connection signal="dialogue_changed" from="DialogueManager" to="CanvasLayer/UI" method="_on_dialogue_manager_dialogue_changed"]
+[connection signal="choice_chosen" from="CanvasLayer/UI" to="DialogueManager" method="on_choice_button_down"]
