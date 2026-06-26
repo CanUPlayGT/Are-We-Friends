@@ -77,6 +77,6 @@ theme_override_constants/separation = 20
 
 [node name="Typewriter" type="Node" parent="." unique_id=1064405283]
 script = ExtResource("4_e6usr")
-cps = 60.0
+cps = 40.0
 period_delay_ms = 0.35
 metadata/_custom_type_script = "uid://dq528p78fely8"
