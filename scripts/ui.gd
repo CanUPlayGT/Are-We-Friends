@@ -15,7 +15,9 @@ func _on_dialogue_manager_dialogue_changed(Dialogue_line: DialogueLine) -> void:
 	dl = Dialogue_line
 	label.text = dl.speaker
 	richtextlabel.text = dl.line
-	typewriter_player.start(richtextlabel)
+	#print(dl.line)
+	
+
 	
 func show_choice() -> void:
 	choicebox_is_opened = true
@@ -47,3 +49,14 @@ func text_animation_is_playing() -> bool :
 func stop_text_animation() -> void:
 	typewriter_player.stop()
 	return 
+	
+func update_ui(text : String) -> void:
+	richtextlabel.text = text
+	
+func set_visible_characters(visible_characters : int) -> void:
+	#print("fired")
+	richtextlabel.visible_characters = visible_characters
+
+func start_animation() -> void:
+	typewriter_player.start(richtextlabel)
+	

@@ -11,11 +11,15 @@ func update_background_from_file(file_path : String) -> void:
 
 
 func _on_dialogue_manager_dialogue_changed(dialogue_line: DialogueLine) -> void:
+	portrait.visible = true
 	var file_path : String
 	match dialogue_line.frame:
+		0:
+			portrait.visible = false
 		1:
 			file_path = "res://assets/PlaceholderPals/PlaceholderPal1.png"
 		2:
-			file_path = "res://assets/PlaceholderPals/PlaceholderPal14.png"
+			file_path = "res://assets/PlaceholderPals/PlaceholderPal4.png"
 	
 	if file_path: update_portrait_from_file(file_path)
+	

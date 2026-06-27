@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bxe37bte3lawj"]
+
+[ext_resource type="Script" uid="uid://bjt5kwpkpvotf" path="res://scripts/transition_scene.gd" id="1_cqi5c"]
+[ext_resource type="Script" uid="uid://dq528p78fely8" path="res://scripts/typewriter.gd" id="2_vydtp"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aigh2"]
+
+[node name="Blackscreen" type="TextureRect" unique_id=907169611]
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+texture = SubResource("PlaceholderTexture2D_aigh2")
+script = ExtResource("1_cqi5c")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1317865013]
+layout_mode = 0
+offset_left = 271.99997
+offset_top = 304.0
+offset_right = 1040.0
+offset_bottom = 483.0
+theme_override_font_sizes/normal_font_size = 54
+text = "SEMINGGU KEMUDIAN..."
+metadata/_edit_use_anchors_ = true
+
+[node name="Typewriter" type="Node" parent="." unique_id=1056560191]
+script = ExtResource("2_vydtp")
+cps = 20.0
+metadata/_custom_type_script = "uid://dq528p78fely8"

@@ -1,4 +1,5 @@
 extends Node
+class_name DialogueDatabase
 
 @export_file("*.json", "*.csv") var file_path : String
 
@@ -10,7 +11,7 @@ enum header{
 	speaker,
 	line,
 	frame,
-	finish,
+	jump_to,
 	option_1,
 	jump_to_1,
 	option_2,
@@ -23,6 +24,8 @@ enum header{
 
 var total_column : int = header.size()
 
+var last_id : int = 0
+
 func get_dialogue_line(index : int ) -> DialogueLine:
 	#Convert array of data into DialogueLine object
 	var dialogue_line := DialogueLine.new()
@@ -31,7 +34,7 @@ func get_dialogue_line(index : int ) -> DialogueLine:
 	dialogue_line.speaker = row[header.speaker] as String
 	dialogue_line.line = row[header.line] as String
 	dialogue_line.frame = row[header.frame] as int
-	dialogue_line.finish = true if row[header.finish].to_lower() == "true" else false 
+	dialogue_line.transition_to = row[header.jump_to] as int
 	dialogue_line.option_1 = row[header.option_1] as String
 	dialogue_line.jump_to_1 = row[header.jump_to_1] as int
 	dialogue_line.option_2 = row[header.option_2] as String
@@ -52,8 +55,10 @@ func _ready() -> void:
 		return
 	if file_path.get_extension() == "json":
 		dialogue_table = load_dialogue_json(file)
+		last_id = dialogue_table.pop_back()[header.id] as int
 	elif file_path.get_extension() == "csv":
 		dialogue_table = load_dialogue_csv(file)
+		last_id = dialogue_table.pop_back()[header.id] as int
 	else:
 		print_debug("Error: Wrong dialogue file format")
 		

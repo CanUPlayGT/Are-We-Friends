@@ -15,6 +15,7 @@ enum state{
 }
 
 signal animation_finished()
+signal animation_started()
 
 var current_state : state
 
@@ -22,7 +23,6 @@ var current_character_index : int
 
 var appear_delay: float 
 var elapsed_time : float
-var count : float 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,6 +39,7 @@ func start(rich_text_label : RichTextLabel) -> void:
 	label.visible_characters = 0
 	current_state = state.playing
 	elapsed_time = 0
+	animation_started.emit()
 		
 func stop() -> void:
 	label.visible_characters = -1
@@ -61,27 +62,30 @@ func _process(delta: float) -> void:
 			current_character_index += 1
 			
 			if label.get_total_character_count() == label.visible_characters:
-				stop()
-				break
 				
+				stop()
+				return
+			
+			#print(label.get_total_character_count())
 			#print_debug(label.text[current_character_index])
 			#print_debug("current character index: %s, visible characters: %s " 
 					#% [current_character_index, label.visible_characters])
-			#
 			
 			elapsed_time -= appear_delay
+			
+			
 			match label.text[current_character_index]:
 				",":
 					elapsed_time -= comma_delay_ms
-				".":
+				".", "?":
 					var next_character_index = current_character_index + 1
 					var last_character_index = label.text.length() - 1
 					if next_character_index > last_character_index:
 						return
-					match label.text[current_character_index + 1]:
+					match label.text[next_character_index]:
 						null :
 							break
-						".", "(", ")", "?":
+						'"', "(", ")", "?":
 							return
 							
 					elapsed_time -= period_delay_ms

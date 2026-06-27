@@ -18,7 +18,6 @@ file_path = "res://assets/final_dialogue.csv"
 
 [node name="DialogueManager" type="Node" parent="." unique_id=339002623]
 script = ExtResource("3_p57ef")
-current_id = 60
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=729604605]
 
@@ -44,4 +43,5 @@ texture = ExtResource("7_u5sy4")
 
 [connection signal="dialogue_changed" from="DialogueManager" to="CanvasLayer/UI" method="_on_dialogue_manager_dialogue_changed"]
 [connection signal="dialogue_changed" from="DialogueManager" to="Environment" method="_on_dialogue_manager_dialogue_changed"]
-[connection signal="choice_chosen" from="CanvasLayer/UI" to="." method="_on_ui_choice_chosen"]
+[connection signal="choice_chosen" from="CanvasLayer/UI" to="DialogueManager" method="on_choice_button_down"]
+[connection signal="fade_in_finished" from="CanvasLayer/TransitionScene" to="." method="_on_transition_scene_fade_in_finished"]
