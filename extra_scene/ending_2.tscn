@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://7et5ao81mvdc"]
+
+[ext_resource type="Script" uid="uid://dfvgi646u3ic2" path="res://extra_scene/ending.gd" id="1_m8svs"]
+[ext_resource type="AudioStream" uid="uid://cvvgd7djw16p2" path="res://sound/04-Michiko.mp3" id="2_djn43"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_ck5ky"]
+
+[node name="Node2D" type="Node2D" unique_id=399949532]
+script = ExtResource("1_m8svs")
+
+[node name="Node2D" type="Sprite2D" parent="." unique_id=126525830]
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(639.99994, 360)
+scale = Vector2(-1279.461, 720.4724)
+texture = SubResource("PlaceholderTexture2D_ck5ky")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1331519779]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer" unique_id=897500609]
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 2.3666666
+offset_bottom = 0.00012207031
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[font_size={72}]Ending 2[/font_size]
+
+
+[font_size={64}]Are we still friend?[/font_size]
+
+
+Programmer		Candra Wijaya
+Storywriter		Candra Wijaya
+
+
+Thanks for playing!"
+scroll_active = false
+autowrap_mode = 0
+autowrap_trim_flags = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=753803724]
+stream = ExtResource("2_djn43")
+autoplay = true

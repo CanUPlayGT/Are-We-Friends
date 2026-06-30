@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dnr8moividttj"]
+
+[ext_resource type="Script" uid="uid://u242susj2kll" path="res://main/game.gd" id="1_lbhrr"]
+[ext_resource type="Script" uid="uid://co2l1qgl0cuj8" path="res://dialogue/dialogue_database.gd" id="2_iywne"]
+[ext_resource type="Script" uid="uid://dcowdv3nig0hs" path="res://dialogue/dialogue_manager.gd" id="3_p57ef"]
+[ext_resource type="PackedScene" uid="uid://cootxxfs55b5e" path="res://UI/ui.tscn" id="4_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://bxe37bte3lawj" path="res://extra_scene/transition_scene.tscn" id="5_gee14"]
+[ext_resource type="Script" uid="uid://df7361qp0hlvl" path="res://environment/environment.gd" id="5_p57ef"]
+[ext_resource type="Texture2D" uid="uid://bde64v6aprh2k" path="res://environment/single bedroom.jpg" id="7_gee14"]
+[ext_resource type="Texture2D" uid="uid://we648l3uimow" path="res://environment/PlaceholderPal1.png" id="7_u5sy4"]
+[ext_resource type="Script" uid="uid://budwcfmjlxx4w" path="res://UI/camera_shake.gd" id="9_0tnpc"]
+[ext_resource type="AudioStream" uid="uid://di508hv8a4qx6" path="res://sound/10-Welcome Home.mp3" id="11_dinhu"]
+[ext_resource type="Script" uid="uid://xqljskptgob6" path="res://sound/sfx_player.gd" id="11_hlcqn"]
+[ext_resource type="AudioStream" uid="uid://byiutoo0yk0pg" path="res://sound/soundreality-door-knocking-175163.mp3" id="11_v3ojx"]
+
+[node name="Game" type="Node2D" unique_id=704152339]
+script = ExtResource("1_lbhrr")
+
+[node name="DialogueDatabase" type="Node" parent="." unique_id=1323725515]
+script = ExtResource("2_iywne")
+file_path = "res://dialogue/final_dialogue.csv"
+
+[node name="DialogueManager" type="Node" parent="." unique_id=339002623]
+script = ExtResource("3_p57ef")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=729604605]
+
+[node name="UI" parent="CanvasLayer" unique_id=793626854 instance=ExtResource("4_u5sy4")]
+metadata/_edit_use_anchors_ = true
+
+[node name="TransitionScene" parent="CanvasLayer" unique_id=907169611 instance=ExtResource("5_gee14")]
+visible = false
+
+[node name="Environment" type="Node2D" parent="." unique_id=114633365]
+script = ExtResource("5_p57ef")
+
+[node name="Background" type="Sprite2D" parent="Environment" unique_id=66428313]
+modulate = Color(0.8810338, 0.87190586, 0.83366287, 1)
+z_index = -1
+position = Vector2(640, 360)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("7_gee14")
+
+[node name="Portrait" type="Sprite2D" parent="Environment" unique_id=1470483700]
+position = Vector2(632, 416)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_u5sy4")
+
+[node name="CameraShake" type="Camera2D" parent="." unique_id=1264561400]
+anchor_mode = 0
+script = ExtResource("9_0tnpc")
+
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=131776896]
+stream = ExtResource("11_dinhu")
+volume_db = -10.0
+autoplay = true
+
+[node name="SfxPlayer" type="AudioStreamPlayer" parent="." unique_id=929972311]
+stream = ExtResource("11_v3ojx")
+script = ExtResource("11_hlcqn")
+
+[connection signal="dialogue_changed" from="DialogueManager" to="CanvasLayer/UI" method="_on_dialogue_manager_dialogue_changed"]
+[connection signal="dialogue_changed" from="DialogueManager" to="Environment" method="_on_dialogue_manager_dialogue_changed"]
+[connection signal="dialogue_changed" from="DialogueManager" to="CameraShake" method="_on_dialogue_manager_dialogue_changed"]
+[connection signal="dialogue_changed" from="DialogueManager" to="SfxPlayer" method="_on_dialogue_manager_dialogue_changed"]
+[connection signal="choice_chosen" from="CanvasLayer/UI" to="." method="_on_ui_choice_chosen"]
