@@ -1,5 +1,8 @@
 Are we Friend?
 
+Mini visual novel developed in Godot 
+Made to participate in Game Dev Bandung JAWARA 2026 Competition
+
 GITHUB REPOSITORY:
 https://github.com/CanUPlayGT/Are-We-Friends
 
