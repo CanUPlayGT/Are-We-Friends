@@ -28,15 +28,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 4
 theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
-text = "[font_size={72}]Ending 1[/font_size]
+text = "[font_size={72}]Ending 2[/font_size]
 
 
-[font_size={64}]We are still friend...[/font_size]
+[font_size={64}]We are still friends...[/font_size]
 
 
 Programmer		Candra Wijaya
 Storywriter		Candra Wijaya
-
 
 Thanks for playing!"
 scroll_active = false
@@ -45,6 +44,9 @@ autowrap_trim_flags = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="CanvasLayer/RichTextLabel" unique_id=422412398]
+rect = Rect2(0, 0, 1280, 984)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=753803724]
 stream = ExtResource("2_xbj6h")

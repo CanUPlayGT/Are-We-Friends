@@ -12,31 +12,34 @@ var ending_1 := preload("res://extra_scene/ending_1.tscn")
 var ending_2 := preload ("res://extra_scene/ending_2.tscn")
 
 var flag : Array[bool]
+var ending_is_playing : bool
 
 func _input(event: InputEvent) -> void:
 	if event.is_action("ui_cancel"):
 		get_tree().reload_current_scene()
 	if event.is_action_pressed("advance"):
-		#if dialogue_manager.is_last():
-			#
-			#dialogue_manager.jump_to(0)
-			#dialogue_manager.advance()
-			#var instance : Node
-			##menentukan ending
-			##player akan mendapat ending 2 jika selalu memilih opsi 2
-			##i.e sebanyak 3 kali
-			#if flag.count(2) == 3:
-				#instance = ending_1.instantiate()
-			#else:
-				##dapat ending 1, jika setidaknya memilih opsi 1 sekali
-				#instance = ending_2.instantiate()
-			#get_tree().change_scene_to_node()
-			##add_child(instance)
-			##animasi fade in
-			#var tween := get_tree().create_tween()
-			#tween.tween_property(instance, "modulate:a", 1, 0.5).from(0)
-			#tween.parallel().tween_property(ui, "modulate:a", 0, 0.5).from(1)
-			#
+		if dialogue_manager.is_last() and not ending_is_playing:
+			ending_is_playing = true
+			bgm.playing = false
+			var instance : ending_scene
+			#menentukan ending
+			#player akan mendapat ending 2 jika selalu memilih opsi 2
+			#i.e sebanyak 3 kali
+			if flag.count(2) == 3:
+				instance = ending_2.instantiate()
+			else:
+				#dapat ending 1, jika setidaknya memilih opsi 1 sekali
+				instance = ending_1.instantiate()
+				
+			add_child(instance)
+			#animasi fade in
+			var tween := get_tree().create_tween()
+			tween.tween_property(instance, "modulate:a", 1, 0.5).from(0)
+			tween.parallel().tween_property(ui, "modulate:a", 0, 0.5).from(1)
+			await instance.credit_end
+			get_tree().reload_current_scene()
+			
+			
 		#print_debug("wait_for_transition: %s" % dialogue_manager.wait_for_transition)
 		if dialogue_manager.current_id <= database.last_id:	
 			if camera.is_shaking:
