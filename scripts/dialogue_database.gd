@@ -20,6 +20,8 @@ enum header{
 	jump_to_3,
 	option_4,
 	jump_to_4,
+	sfx,
+	vfx 
 }
 
 var total_column : int = header.size()
@@ -28,8 +30,10 @@ var last_id : int = 0
 
 func get_dialogue_line(index : int ) -> DialogueLine:
 	#Convert array of data into DialogueLine object
+	
 	var dialogue_line := DialogueLine.new()
-	var row = dialogue_table[index]
+	var row : Array = dialogue_table[index]
+	
 	dialogue_line.id = row[header.id] as int
 	dialogue_line.speaker = row[header.speaker] as String
 	dialogue_line.line = row[header.line] as String
@@ -43,13 +47,14 @@ func get_dialogue_line(index : int ) -> DialogueLine:
 	dialogue_line.jump_to_3 = row[header.jump_to_3] as int
 	dialogue_line.option_4 = row[header.option_4] as String
 	dialogue_line.jump_to_4 = row[header.jump_to_4] as int
+	
 	return dialogue_line
 	
 func _ready() -> void:
 	if not FileAccess.file_exists(file_path):
 		printerr("File not found: %s" % file_path)
 		return
-	var file = FileAccess.open(file_path, FileAccess.READ)
+	var file : FileAccess = FileAccess.open(file_path, FileAccess.READ)
 	if FileAccess.get_open_error() != Error.OK:
 		printerr("Error opening dialogue file")
 		return
@@ -62,28 +67,28 @@ func _ready() -> void:
 	else:
 		print_debug("Error: Wrong dialogue file format")
 		
-func load_dialogue_json(file : FileAccess) :
-	var json = JSON.new()
-	var content
+func load_dialogue_json(file : FileAccess) -> Array:
+	var json := JSON.new()
+	var content : Array
 
 	if FileAccess.get_open_error() == Error.OK:
 		if Error.OK == json.parse(file.get_as_text()):
 			content = json.data 
 	return content
 
-func load_dialogue_csv(file : FileAccess) :
-	file.get_csv_line() #discard the first line (header)
+func load_dialogue_csv(file : FileAccess) -> Array :
+	file.get_csv_line() #discard the first line (the header in a table)
 	
 	#Read every line
-	var content = []
-	var temp = []
+	var content := []
+	var buffer := []
 	while file.get_position() < file.get_length():
 		#check if a line is empty first
-		temp = file.get_csv_line()
-		if temp[0] == "":
-			return;
+		buffer = file.get_csv_line()
+		if buffer[0] == "":
+			continue
 			
-		content.append(temp) 
+		content.append(buffer) 
 		
 	#print(content)
 		

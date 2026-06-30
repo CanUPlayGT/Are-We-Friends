@@ -1,7 +1,7 @@
 ID,SPEAKER,LINE,FRAME,TRANSITION_TO,OPTION 1,JUMPTO1 ,OPTION 2,JUMPTO2,OPTION 3,JUMPTO3,OPTION 4,JUMPTO4
 0,Andre,"""Ugh, dingin...""",,,,,,,,,,
 1,Andre,"""Aku harus makan dulu""",,,,,,,,,,
-2,,....,,,,,,,,,,
+2,,*bangun...,,,,,,,,,,
 3,Andre,"""Sekarang hari minggu, setelah lama sibuk urusan OSIS dan tugas akhirnya aku bisa santai-santai""",1,,,,,,,,,
 4,Andre,"""Pokoknya aku mau rebahan sambil push rank""",1,,,,,,,,,
 5,Andre,"""Ayo, pasti kali ini bisa ke Mythic Immortal",1,,,,,,,,,

@@ -78,8 +78,8 @@ func _process(delta: float) -> void:
 				",":
 					elapsed_time -= comma_delay_ms
 				".", "?":
-					var next_character_index = current_character_index + 1
-					var last_character_index = label.text.length() - 1
+					var next_character_index : int = current_character_index + 1
+					var last_character_index : int = label.text.length() - 1
 					if next_character_index > last_character_index:
 						return
 					match label.text[next_character_index]:

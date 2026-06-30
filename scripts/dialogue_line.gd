@@ -14,3 +14,5 @@ var option_3 : String
 var jump_to_3 : int
 var option_4 : String
 var jump_to_4 : int
+var sfx : String
+var vfx : String
